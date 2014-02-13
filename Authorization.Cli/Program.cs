@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Authorization.Cli.Startup;
+using log4net;
 
+[assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "log4net")]
 namespace Authorization.Cli
 {
 	class Program
@@ -10,7 +12,7 @@ namespace Authorization.Cli
 		{
 			StructureMapConfig.Bootstrap();
 
-			//TODO: logging
+			var log = LogManager.GetLogger("Authorization.Cli");
 
 			while (args.Any() == false)
 			{
@@ -27,6 +29,7 @@ namespace Authorization.Cli
 			//TODO: process command
 			foreach (var word in args)
 			{
+				log.Info(word);
 				Console.Write("{0} ", word);
 			}
 			Console.ReadLine();
