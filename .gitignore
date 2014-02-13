@@ -3,6 +3,7 @@
 
 # Because I'm Grumpy
 *.config
+[Ll]og/
 
 # User-specific files
 *.suo
