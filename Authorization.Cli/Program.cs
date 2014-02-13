@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Authorization.Cli.Startup;
 
 namespace Authorization.Cli
 {
@@ -7,7 +8,9 @@ namespace Authorization.Cli
 	{
 		static void Main(string[] args)
 		{
-			//TODO: fire up structuremap
+			StructureMapConfig.Bootstrap();
+
+			//TODO: logging
 
 			while (args.Any() == false)
 			{
