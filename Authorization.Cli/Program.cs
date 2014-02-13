@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using Authorization.Cli.Executors;
 using Authorization.Cli.Startup;
 using log4net;
+using StructureMap;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "log4net")]
 namespace Authorization.Cli
@@ -26,12 +28,26 @@ namespace Authorization.Cli
 				}
 			}
 
-			//TODO: process command
 			foreach (var word in args)
 			{
 				log.Info(word);
-				Console.Write("{0} ", word);
 			}
+
+			try
+			{
+				var executor = ObjectFactory.GetInstance<IExecutor>();
+				executor.Execute(args, log);
+			}
+			catch (Exception ex)
+			{
+				do
+				{
+					log.Error(ex.Message);
+					log.Error(ex.StackTrace);
+					ex = ex.InnerException;
+				} while (ex != null);
+			}
+
 			Console.ReadLine();
 		}
 	}
