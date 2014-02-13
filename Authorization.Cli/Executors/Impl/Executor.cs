@@ -7,15 +7,14 @@ namespace Authorization.Cli.Executors.Impl
 {
 	public class Executor : IExecutor
 	{
-		private readonly IDictionary<string, IExecutor> _executors;
-
+		protected IDictionary<string, IExecutor> Executors;
+ 
 		public Executor()
 		{
-		}
-
-		public Executor(IDictionary<string, IExecutor> executors)
-		{
-			_executors = executors;
+			Executors = new Dictionary<string, IExecutor>
+			{
+				{"role", new RoleExecutor()}
+			};
 		}
 
 		public void Execute(string[] args, ILog log)
@@ -24,9 +23,9 @@ namespace Authorization.Cli.Executors.Impl
 			if (String.IsNullOrWhiteSpace(command) == false)
 			{
 				IExecutor executor;
-				if (_executors.TryGetValue(command, out executor))
+				if (Executors.TryGetValue(command.ToLower(), out executor))
 				{
-					log.InfoFormat("Executing: {0}", command);
+					log.DebugFormat("Executing: {0}", command);
 					executor.Execute(args.Skip(1).ToArray(), log);
 				}
 				else

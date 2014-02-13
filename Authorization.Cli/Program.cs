@@ -16,17 +16,9 @@ namespace Authorization.Cli
 
 			var log = LogManager.GetLogger("Authorization.Cli");
 
-			while (args.Any() == false)
-			{
-				Console.WriteLine("Type something will you, we're paying for this.");
+			//log.Debug(ObjectFactory.WhatDoIHave());
 
-				var input = Console.ReadLine();
-
-				if (String.IsNullOrWhiteSpace(input) == false)
-				{
-					args = input.Split(' ');
-				}
-			}
+			args = EnsureArguments(args);
 
 			foreach (var word in args)
 			{
@@ -40,15 +32,38 @@ namespace Authorization.Cli
 			}
 			catch (Exception ex)
 			{
-				do
-				{
-					log.Error(ex.Message);
-					log.Error(ex.StackTrace);
-					ex = ex.InnerException;
-				} while (ex != null);
+				LogException(ex, log);
 			}
 
 			Console.ReadLine();
+		}
+
+		private static string[] EnsureArguments(string[] args)
+		{
+			var result = args;
+			while (result.Any() == false)
+			{
+				Console.WriteLine("Type something will you, we're paying for this.");
+
+				var input = Console.ReadLine();
+
+				if (String.IsNullOrWhiteSpace(input) == false)
+				{
+					result = input.Split(' ');
+				}
+			}
+
+			return result;
+		}
+
+		private static void LogException(Exception ex, ILog log)
+		{
+			do
+			{
+				log.Error(ex.Message);
+				log.Error(ex.StackTrace);
+				ex = ex.InnerException;
+			} while (ex != null);
 		}
 	}
 }

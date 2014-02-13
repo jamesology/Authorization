@@ -5,31 +5,36 @@ using log4net;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Authorization.Cli.Tests
+namespace Authorization.Cli.Tests.Executors
 {
 	[TestFixture]
 	public class ExecutorTests
 	{
-		private static ILog _log = LogManager.GetLogger(typeof(ExecutorTests));
+		private class ExecutorTestHarness : Executor
+		{
+			public ExecutorTestHarness(IExecutor mockAction)
+			{
+				Executors = new Dictionary<string, IExecutor>
+				{
+					{"validaction", mockAction}
+				};
+			}
+		}
+		private static readonly ILog Log = LogManager.GetLogger(typeof(ExecutorTests));
 
 		[Test]
 		public void Execute_InvalidAction_ThrowsArgumentException()
 		{
 			var mockAction = MockRepository.GenerateStub<IExecutor>();
 
-			var executors = new Dictionary<string, IExecutor>
-			{
-				{"ValidAction", mockAction}
-			};
-
-			var executor = new Executor(executors);
+			var executor = new ExecutorTestHarness(mockAction);
 
 			var args = new[]
 			{
 				"InvalidCommand"
 			};
 
-			Assert.That(() => executor.Execute(args, _log), Throws.ArgumentException);
+			Assert.That(() => executor.Execute(args, Log), Throws.ArgumentException);
 		}
 
 		[Test]
@@ -40,19 +45,14 @@ namespace Authorization.Cli.Tests
 				.IgnoreArguments()
 				.Repeat.Once();
 
-			var executors = new Dictionary<string, IExecutor>
-			{
-				{"ValidAction", mockAction}
-			};
-
-			var executor = new Executor(executors);
+			var executor = new ExecutorTestHarness(mockAction);
 
 			var args = new[]
 			{
 				"ValidAction"
 			};
 
-			executor.Execute(args, _log);
+			executor.Execute(args, Log);
 
 			mockAction.VerifyAllExpectations();
 		}

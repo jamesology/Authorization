@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExecutorTests.cs" />
+    <Compile Include="Executors\ExecutorTests.cs" />
+    <Compile Include="Executors\RoleExecutorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
