@@ -1,11 +1,19 @@
 using System;
 using System.Linq;
+using Authorization.Core.Repositories;
 using log4net;
 
 namespace Authorization.Cli.Executors.Impl
 {
 	public class RoleExecutor : IExecutor
 	{
+		private readonly IRoleRepository _repository;
+
+		public RoleExecutor(IRoleRepository repository)
+		{
+			_repository = repository;
+		}
+
 		public void Execute(string[] args, ILog log)
 		{
 			var roleName = args.FirstOrDefault();
@@ -17,6 +25,16 @@ namespace Authorization.Cli.Executors.Impl
 			}
 
 			log.DebugFormat("Role Name: {0}", roleName);
+			foreach (var action in actions)
+			{
+				log.DebugFormat("\tAction: {0}", action);
+			}
+
+			var role = _repository.Get(roleName).FirstOrDefault(x => x.Name == roleName) ?? new Role();
+			role.Name = roleName;
+			role.AddActions(actions);
+
+			_repository.Save(role);
 		}
 	}
 }

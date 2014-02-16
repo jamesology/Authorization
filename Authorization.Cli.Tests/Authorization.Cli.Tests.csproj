@@ -60,6 +60,14 @@
       <Project>{63a2d8cd-85c0-4370-9569-f482d2fea7b5}</Project>
       <Name>Authorization.Cli</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Authorization.Core\Authorization.Core.csproj">
+      <Project>{e19a6108-2cdf-4cc4-bb60-4dd866d9ab8d}</Project>
+      <Name>Authorization.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Authorization\Authorization.csproj">
+      <Project>{bfaa3ba0-b1f0-4f95-9406-41953ecd71cf}</Project>
+      <Name>Authorization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Authorization
@@ -12,6 +13,14 @@ namespace Authorization
 		public Role()
 		{
 			Actions = new Collection<string>();
+		}
+
+		public void AddActions(IEnumerable<string> actions)
+		{
+			foreach (var action in actions)
+			{
+				Actions.Add(action);
+			}
 		}
 	}
 }

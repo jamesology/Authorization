@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Authorization.Core.Repositories;
 using log4net;
 
 namespace Authorization.Cli.Executors.Impl
@@ -9,11 +10,11 @@ namespace Authorization.Cli.Executors.Impl
 	{
 		protected IDictionary<string, IExecutor> Executors;
  
-		public Executor()
+		public Executor(IRoleRepository roleRepository)
 		{
 			Executors = new Dictionary<string, IExecutor>
 			{
-				{"role", new RoleExecutor()}
+				{"role", new RoleExecutor(roleRepository)}
 			};
 		}
 

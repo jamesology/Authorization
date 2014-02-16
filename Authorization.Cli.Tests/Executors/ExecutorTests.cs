@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Authorization.Cli.Executors;
 using Authorization.Cli.Executors.Impl;
+using Authorization.Core.Repositories;
 using log4net;
 using NUnit.Framework;
 using Rhino.Mocks;
@@ -12,7 +13,7 @@ namespace Authorization.Cli.Tests.Executors
 	{
 		private class ExecutorTestHarness : Executor
 		{
-			public ExecutorTestHarness(IExecutor mockAction)
+			public ExecutorTestHarness(IExecutor mockAction) : base(MockRepository.GenerateStub<IRoleRepository>())
 			{
 				Executors = new Dictionary<string, IExecutor>
 				{
