@@ -19,7 +19,7 @@ namespace Authorization.Cli.Executors.Impl
 			var roleName = args.FirstOrDefault();
 			var actions = args.Skip(1);
 
-			if(String.IsNullOrWhiteSpace(roleName))
+			if (String.IsNullOrWhiteSpace(roleName))
 			{
 				throw new ArgumentException("Invalid Role name.", "args");
 			}
@@ -32,9 +32,16 @@ namespace Authorization.Cli.Executors.Impl
 
 			var role = _repository.Get(roleName).FirstOrDefault(x => x.Name == roleName) ?? new Role();
 			role.Name = roleName;
-			role.AddActions(actions);
 
-			_repository.Save(role);
+			if (actions.Any() && actions.FirstOrDefault().ToLower() == "delete")
+			{
+				_repository.Delete(role);
+			}
+			else
+			{
+				role.AddActions(actions);
+				_repository.Save(role);
+			}
 		}
 	}
 }

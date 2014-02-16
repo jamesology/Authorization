@@ -229,5 +229,23 @@ namespace Authorization.Cli.Tests.Executors
 			repository.VerifyAllExpectations();
 			Assert.That(role.Actions, Has.Count.EqualTo(4));
 		}
+
+		[Test]
+		public void Execute_RoleDelete_CallsRepository()
+		{
+			var repository = MockRepository.GenerateMock<IRoleRepository>();
+			repository.Expect(x => x.Get(Arg<string>.Is.TypeOf))
+				.Return(new[] { new Role { Name = "NewRole", Actions = new List<string> { "Action1", "Action2" } } })
+				.Repeat.Once();
+			repository.Expect(x => x.Delete(Arg<Role>.Is.TypeOf))
+				.Repeat.Once();
+
+			var args = new[] { "NewRole", "Delete" };
+			var executor = new RoleExecutor(repository);
+
+			executor.Execute(args, Log);
+
+			repository.VerifyAllExpectations();
+		}
 	}
 }
