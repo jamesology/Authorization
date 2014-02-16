@@ -13,7 +13,7 @@ namespace Authorization.Cli.Tests.Executors
 	{
 		private class ExecutorTestHarness : Executor
 		{
-			public ExecutorTestHarness(IExecutor mockAction) : base(MockRepository.GenerateStub<IRoleRepository>())
+			public ExecutorTestHarness(IExecutor mockAction) : base(MockRepository.GenerateStub<IRoleRepository>(), MockRepository.GenerateStub<IUserRepository>())
 			{
 				Executors = new Dictionary<string, IExecutor>
 				{

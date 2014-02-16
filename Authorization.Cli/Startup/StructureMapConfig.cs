@@ -1,4 +1,5 @@
-﻿using StructureMap;
+﻿using Authorization.Core;
+using StructureMap;
 
 namespace Authorization.Cli.Startup
 {
@@ -7,7 +8,11 @@ namespace Authorization.Cli.Startup
 		private static bool _hasStarted;
 		public void BootstrapStructureMap()
 		{
-			ObjectFactory.Initialize(x => x.AddRegistry<AuthorizationCliRegistry>());
+			ObjectFactory.Initialize(x =>
+			{
+				x.AddRegistry<AuthorizationCoreRegistry>();
+				x.AddRegistry<AuthorizationCliRegistry>();
+			});
 		}
 
 		public static void Restart()

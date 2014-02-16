@@ -9,12 +9,13 @@ namespace Authorization.Cli.Executors.Impl
 	public class Executor : IExecutor
 	{
 		protected IDictionary<string, IExecutor> Executors;
- 
-		public Executor(IRoleRepository roleRepository)
+
+		public Executor(IRoleRepository roleRepository, IUserRepository userRepository)
 		{
 			Executors = new Dictionary<string, IExecutor>
 			{
-				{"role", new RoleExecutor(roleRepository)}
+				{"role", new RoleExecutor(roleRepository)},
+				{"user", new UserExecutor(userRepository)}
 			};
 		}
 
