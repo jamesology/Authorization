@@ -11,7 +11,7 @@ namespace Authorization.Cli.Tests.Executors
 	[TestFixture]
 	public class RoleExecutorTests
 	{
-		private static readonly ILog Log = LogManager.GetLogger(typeof(ExecutorTests));
+		private static readonly ILog Log = LogManager.GetLogger(typeof(RoleExecutorTests));
 
 		[Test]
 		public void Execute_EmptyArray_ThrowsArgumentException()

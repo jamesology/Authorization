@@ -30,8 +30,7 @@ namespace Authorization.Cli.Executors.Impl
 				log.DebugFormat("\tAction: {0}", action);
 			}
 
-			var role = _repository.Get(roleName).FirstOrDefault(x => x.Name == roleName) ?? new Role();
-			role.Name = roleName;
+			var role = _repository.Get(roleName).FirstOrDefault(x => x.Name == roleName) ?? new Role {Name = roleName};
 
 			if (actions.Any() && actions.FirstOrDefault().ToLower() == "delete")
 			{

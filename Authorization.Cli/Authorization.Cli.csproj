@@ -57,6 +57,7 @@
     <Compile Include="Executors\IExecutor.cs" />
     <Compile Include="Executors\Impl\Executor.cs" />
     <Compile Include="Executors\Impl\RoleExecutor.cs" />
+    <Compile Include="Executors\Impl\UserExecutor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\StructureMapConfig.cs" />

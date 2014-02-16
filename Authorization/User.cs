@@ -13,5 +13,13 @@ namespace Authorization
 		{
 			Roles = new Collection<string>();
 		}
+
+		public void AddRoles(IEnumerable<string> roles)
+		{
+			foreach (var role in roles)
+			{
+				Roles.Add(role);
+			}
+		}
 	}
 }
