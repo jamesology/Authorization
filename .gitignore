@@ -153,3 +153,8 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+/packages/Microsoft.AspNet.WebApi.5.0.0
+/packages/Microsoft.AspNet.WebApi.Client.5.0.0
+/packages/Microsoft.AspNet.WebApi.Core.5.0.0
+/packages/Microsoft.AspNet.WebApi.WebHost.5.0.0
+/packages/Newtonsoft.Json.5.0.6
