@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{850D408F-61A3-4F77-8FE0-1321D6F209F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization.Web", "Authorization.Web\Authorization.Web.csproj", "{508C76E5-F6D3-4982-B0C5-9BF76E109318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authorization.Cli", "Authorization.Cli\Authorization.Cli.csproj", "{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{508C76E5-F6D3-4982-B0C5-9BF76E109318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508C76E5-F6D3-4982-B0C5-9BF76E109318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508C76E5-F6D3-4982-B0C5-9BF76E109318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
