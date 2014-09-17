@@ -1,23 +1,37 @@
 ﻿using System;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Authorization.Data
 {
 	public class UserRepository
 	{
-		private readonly string _connectionString;
-
+		private readonly UserContext _userContext;
 		public UserRepository(string connectionString)
 		{
-			_connectionString = connectionString;
+			_userContext = new UserContext(connectionString);
 		}
 
 		public User AddUser(string name)
 		{
-			var result =  new User
+			var user =  new User
 			{
 				Token = Guid.NewGuid().ToString(),
 				Name = name
 			};
+
+			User result;
+			if (_userContext.Users.Any(x => x.Name == name))
+			{
+				result = null;
+			}
+			else
+			{
+				_userContext.Users.Add(user);
+				_userContext.SaveChanges();
+				result = user;
+			}
 
 			return result;
 		}

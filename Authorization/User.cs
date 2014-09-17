@@ -2,8 +2,9 @@
 {
 	public class User
 	{
-		public string Token { get; set; }
-		public string Name { get; set; }
+		public virtual long Id { get; set; }
+		public virtual string Token { get; set; }
+		public virtual string Name { get; set; }
 	}
 }
 
