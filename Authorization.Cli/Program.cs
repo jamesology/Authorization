@@ -5,47 +5,16 @@ using System.Reflection;
 
 namespace Authorization.Cli
 {
-	namespace Commands
-	{
-	}
 	internal class Program
 	{
-		private const string CommandNamespace = "Authorization.Cli.Commands";
 		private const string ReadPrompt = "console> ";
-		private static Dictionary<string, Dictionary<string, IEnumerable<ParameterInfo>>> _commandLibraries;
 
 		private static void Main(string[] args)
 		{
 			Console.Title = typeof (Program).Name;
 
-			LoadCommands();
-
 			Run();
 		}
-
-		private static void LoadCommands()
-		{
-			_commandLibraries = new Dictionary<string, Dictionary<string, IEnumerable<ParameterInfo>>>();
-
-			var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-				where t.IsClass && t.Namespace == CommandNamespace
-				select t;
-			var commandClasses = q.ToList();
-
-			foreach (var commandClass in commandClasses)
-			{
-				var methods = commandClass.GetMethods(BindingFlags.Static | BindingFlags.Public);
-				var methodDictionary = new Dictionary<string, IEnumerable<ParameterInfo>>();
-				foreach (var method in methods)
-				{
-					var commandName = method.Name;
-					methodDictionary.Add(commandName, method.GetParameters());
-				}
-
-				_commandLibraries.Add(commandClass.Name, methodDictionary);
-			}
-		}
-
 
 		private static void Run()
 		{
@@ -83,11 +52,11 @@ namespace Authorization.Cli
 			string badCommandMessage = string.Format("Unrecognized command \'{0}.{1}\'. Please type a valid command.", command.LibraryClassName, command.Name);
 
 			// Validate the command name:
-			if (!_commandLibraries.ContainsKey(command.LibraryClassName))
+			if (!Library.Commands.ContainsKey(command.LibraryClassName))
 			{
 				return badCommandMessage;
 			}
-			var methodDictionary = _commandLibraries[command.LibraryClassName];
+			var methodDictionary = Library.Commands[command.LibraryClassName];
 			if (!methodDictionary.ContainsKey(command.Name))
 			{
 				return badCommandMessage;
@@ -163,7 +132,7 @@ namespace Authorization.Cli
 			var current = typeof (Program).Assembly;
 
 			// Need the full Namespace for this:
-			var commandLibaryClass = current.GetType(CommandNamespace + "." + command.LibraryClassName);
+			var commandLibaryClass = current.GetType(Library.CommandNamespace + "." + command.LibraryClassName);
 
 			object[] inputArgs = null;
 			if (methodParameterValueList.Count > 0)
