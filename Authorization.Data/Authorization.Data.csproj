@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{31D91367-AC7E-426F-A9FE-E49D9A0C4B03}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{7F262FE3-FE14-43C5-86A6-80640104D4FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Authorization.Cli</RootNamespace>
-    <AssemblyName>Authorization.Cli</AssemblyName>
+    <RootNamespace>Authorization.Data</RootNamespace>
+    <AssemblyName>Authorization.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,21 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Core.cs" />
-    <Compile Include="Commands\DefaultCommands.cs" />
-    <Compile Include="ConsoleCommand.cs" />
-    <Compile Include="Library.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Authorization.Data\Authorization.Data.csproj">
-      <Project>{7f262fe3-fe14-43c5-86a6-80640104d4fc}</Project>
-      <Name>Authorization.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Authorization\Authorization.csproj">
       <Project>{0e524940-394b-4d15-95d0-4a8678c44201}</Project>
       <Name>Authorization</Name>
