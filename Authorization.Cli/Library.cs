@@ -9,6 +9,7 @@ namespace Authorization.Cli
 		private static Dictionary<string, Dictionary<string, IEnumerable<ParameterInfo>>> _commandLibraries;
 
 		public const string CommandNamespace = "Authorization.Cli.Commands";
+		public const string ConnectionString = "CliConnection";
 
 		public static Dictionary<string, Dictionary<string, IEnumerable<ParameterInfo>>> Commands
 		{
