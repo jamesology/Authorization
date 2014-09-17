@@ -35,5 +35,10 @@ namespace Authorization.Data
 
 			return result;
 		}
+
+		public IQueryable<User> GetUsers()
+		{
+			return _userContext.Users;
+		}
 	}
 }
