@@ -4,6 +4,7 @@
 # Because I'm Grumpy
 [Aa]pp.config
 [Ll]og/
+packages/
 
 # User-specific files
 *.suo
