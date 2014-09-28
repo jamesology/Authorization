@@ -40,5 +40,10 @@ namespace Authorization.Data
 		{
 			return _userContext.Users;
 		}
+
+		public User DeactivateUser(User user)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
